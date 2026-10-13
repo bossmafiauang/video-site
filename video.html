@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  background: #0f0f0f;
+  color: #e8eaed;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.video-wrap { max-width: 900px; width: 100%; text-align: center; }
+.video-wrap h1 { font-size: 22px; margin-bottom: 8px; }
+.video-wrap p { color: #9aa0a6; margin-bottom: 20px; font-size: 14px; }
+.video-wrap video {
+  width: 100%;
+  border-radius: 12px;
+  background: #000;
+  aspect-ratio: 16 / 9;
+}
+</style>
+</head>
+<body>
+  <div class="video-wrap">
+    <h1>Video</h1>
+    <p>Klik tombol play untuk memutar.</p>
+    <video controls playsinline preload="metadata">
+      <source src="URL_VIDEO_BOS" type="video/mp4">
+    </video>
+  </div>
+</body>
+</html>
